@@ -1,4 +1,4 @@
-import Quagga from "quagga";
+import Quagga from "client/src/Scanner/Quagga";
 
 export default function Scanner2() {
   Quagga.init(

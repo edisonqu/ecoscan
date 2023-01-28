@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import config from "./config.json";
-import Quagga from "quagga";
+import Quagga from "client/src/Scanner/Quagga";
 import { parseProductData } from "./productSearch";
 
 export default function QuaggaScanner(props) {
@@ -49,6 +49,7 @@ export default function QuaggaScanner(props) {
         return;
       }
       lastDetection = code;
+      console.log("Barcode detected and processed : [" + code + "]", result);
       var cacheData = {
         "064100389014": {
           status: 1,
