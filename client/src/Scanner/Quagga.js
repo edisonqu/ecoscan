@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import config from "./config.json";
-import Quagga from "client/src/Scanner/Quagga";
+import Quagga from "quagga";
 import { parseProductData } from "./productSearch";
 
 export default function QuaggaScanner(props) {
