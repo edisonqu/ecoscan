@@ -15,4 +15,32 @@
     width: 250px;
     height: 80px;
   }
+  .progress {
+    height: 200px;
+    width: 200px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_state {
+      border: 1px solid;
+      height: 15px;
+      width: 50px;
+      transform: skewX(-45deg);
+      transform-origin: bottom;
+      position: relative;
+      display: inline-block;
+      margin-inline: 3px;
+      &:nth-child(1) {
+        border-bottom-left-radius: 25px;
+        border-top-left-radius: 7px;
+      }
+      &:nth-child(3) {
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 7px;
+      }
+
+      //   display: inline;
+    }
+  }
 }

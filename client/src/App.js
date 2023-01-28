@@ -5,6 +5,7 @@ import Login from "./Login/Login";
 import Rewards from "./Rewards/Rewards";
 import Results from "./Results/Results";
 import Nav from "./Nav/Nav";
+import History from "./History/History";
 
 function App() {
   return (
@@ -25,6 +26,11 @@ function App() {
           <Route
             path="/rewards"
             element={<Rewards />}
+            className="component-wrapper"
+          />
+          <Route
+            path="/history"
+            element={<History />}
             className="component-wrapper"
           />
           <Route path="*" element={<Login />} />

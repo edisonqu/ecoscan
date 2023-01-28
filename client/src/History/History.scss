@@ -1,0 +1,13 @@
+.history {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &_card {
+    border: 1px solid black;
+    width: 200px;
+    margin-block: 10px;
+    text-transform: capitalize;
+  }
+}
