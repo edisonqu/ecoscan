@@ -18,6 +18,9 @@ export default function Nav() {
             <Link to="/rewards" onClick={() => setExpandNav(false)}>
               Rewards
             </Link>
+            <Link to="/history" onClick={() => setExpandNav(false)}>
+              Past Items
+            </Link>
           </div>
         )}
       </span>

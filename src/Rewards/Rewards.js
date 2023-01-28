@@ -1,3 +1,5 @@
+import CouponCard from "./CouponCard";
+
 export default function Rewards() {
   const res = {
     reward: [
@@ -13,21 +15,14 @@ export default function Rewards() {
   };
   return (
     <div className="rewards">
-      <h3>View your Rewards</h3>
+      <h1>View your Rewards</h1>
+      <div className="progress-bar">
+        <div className="progress_state"></div>
+        <div className="progress_state"></div>
+        <div className="progress_state"></div>
+      </div>
       {res.reward.map((item, i) => {
-        return (
-          <>
-            <div
-              key={i}
-              className="coupon"
-              onClick={() => (item.barcodeShowing = !item.barcodeShowing)}
-            >
-              <h3>{item.coupon}</h3>
-            </div>
-            {console.log(item.barcodeShowing)}
-            <div className="barcode">{item.barcode}</div>
-          </>
-        );
+        return <CouponCard item={item} key={i} />;
       })}
     </div>
   );
