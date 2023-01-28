@@ -7,7 +7,7 @@ export default function Results() {
   };
   return (
     <div className="results">
-      <img src={camera} />
+      <img src={camera} alt="device camera playback" />
       <h1>Results</h1>
       <h3>Food grade: {res.foodGrade}</h3>
       <h3>Alternatives:</h3>

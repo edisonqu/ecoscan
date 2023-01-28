@@ -45,7 +45,7 @@ export default function QuaggaScanner(props) {
     var lastDetection;
     Quagga.onDetected(function (result) {
       var code = result.codeResult.code;
-      if (code == null || code == lastDetection) {
+      if (code == null || code === lastDetection) {
         return;
       }
       lastDetection = code;
