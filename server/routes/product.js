@@ -20,7 +20,12 @@ router.get('/:number', async function (req, res, next) {
             const url = `https://world.openfoodfacts.org/api/v0/product/${number}.json`
             const response = await fetch(url)
             const data = await response.json();
-            const datas = {code: data.code,product: data.product._id}
+            const datas = {code: data.code,
+                image: data.product.image_url,
+                name: data.product.product_name,
+                ecoscore:data.product.ecoscore_grade,
+                nutrition: data.product.nutrition_grades
+            }
             res.send(datas);
         } catch (error) {
             console.log(error);
