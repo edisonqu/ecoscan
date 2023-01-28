@@ -1,0 +1,43 @@
+.nav {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 70px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    position: relative;
+
+    img {
+      height: 30px;
+      position: absolute;
+      right: -26vw;
+      top: -15px;
+    }
+
+    .expanded {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      width: 100px;
+      top: 35px;
+      z-index: 2;
+      right: 0;
+      font-size: 20px;
+      right: -111px;
+      text-align: right;
+      color: black;
+      border: 1px solid;
+      -webkit-box-shadow: -50px 100px 0 100px rgba(black, 0.5);
+      box-shadow: -50px 366px 0 365px rgba(black, 0.5);
+
+      Link {
+        text-decoration: none !important;
+      }
+    }
+  }
+}

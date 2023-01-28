@@ -1,115 +1,53 @@
-import React, { useEffect, useState } from "react";
-import config from "./config.json";
-import Quagga from "quagga";
-import { parseProductData } from "./productSearch";
+import QuaggaScanner from "./Quagga";
+import { useState } from "react";
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
-const Scanner = (props) => {
-  const { onDetected } = props;
+export default function Scanner() {
+  const [troubleScanning, setTroubleScanning] = useState(false);
+  const navigate = useNavigate();
 
-  const defaultColour = "#282c34";
-  const [flags, setFlags] = useState("No Ingredients Found");
-  const [colour, setColour] = useState("#282c34");
+  const formik = useFormik({
+    initialValues: {
+      id: "",
+    },
 
-  useEffect(() => {
-    Quagga.init(
-      {
-        numOfWorkers: 4,
-        debug: true,
-        locate: true,
-        inputStream: {
-          name: "Live",
-          type: "LiveStream",
-          target: document.querySelector("#qr-reader"), // Or '#yourElement' (optional)
-        },
-        decoder: {
-          readers: ["upc_reader"],
-          debug: {
-            drawBoundingBox: true,
-            drawScanline: true,
-          },
-        },
-      },
-      function (err) {
-        if (err) {
-          //   console.log(err);
-          return;
-        }
-        Quagga.start();
-      }
-    );
-    var lastDetection;
-    Quagga.onDetected(function (result) {
-      var code = result.codeResult.code;
-      if (code == null || code == lastDetection) {
-        return;
-      }
-      lastDetection = code;
-      var cacheData = {
-        "064100389014": {
-          status: 1,
-          product: {
-            _keywords: ["rice", "Kelloggs", "square"],
-            ingredients: [
-              { text: "rice" },
-              { text: "sugar" },
-              { text: "cereal" },
-            ],
-            brands: "Kellogg",
-          },
-        },
-        "063348100900": {
-          status: 1,
-          product: {
-            _keywords: [],
-            ingredients: [{ text: "chocolate" }, { text: "palm oil" }],
-            brands: "Dare",
-          },
-        },
-      };
-      //     fetch('https://world.openfoodfacts.org/api/v0/product/' + code)
-      //         .then((response) => response.json())
-      //         .then((json) => {
-      //             let warningIngredients = parseProductData(json);
-      //             if (warningIngredients != null) {
-      //                 document.getElementById('flags').innerText =
-      //                     warningIngredients;
-      //             }
-      //         });
-      let warningIngredients = parseProductData(cacheData[code]);
-      let flagRows = [
-        <>
-          <h3>
-            High Emission Ingredients Found: <br></br>
-          </h3>
-        </>,
-      ];
-      if (warningIngredients != null) {
-        warningIngredients.forEach((x) => {
-          flagRows.push(
-            <>
-              {x}
-              <br></br>
-            </>
-          );
-        });
-        flagRows.push(
-          <a href="https://www.visualcapitalist.com/visualising-the-greenhouse-gas-impact-of-each-food/">
-            Learn More
-          </a>
-        );
-        setFlags(flagRows);
-        setColour("#aa3333");
-        setTimeout(() => setColour(defaultColour), 1000);
-      }
-    });
-  }, []);
+    onSubmit: async (values) => {
+      console.log(values);
+      formik.resetForm();
+      navigate("/results");
+    },
+  });
 
   return (
-    // If you do not specify a target,
-    // QuaggaJS would look for an element that matches
-    // the CSS selector #interactive.viewport
-    <div id="interactive" className="viewport" />
-  );
-};
+    <div className="scanner">
+      <h1>Scan Barcode Here</h1>
 
-export default Scanner;
+      <QuaggaScanner />
+      <p>
+        You will be able to track how bad your food is for the environment smh
+      </p>
+      <button onClick={() => setTroubleScanning(!troubleScanning)}>
+        Having issues scanning?
+      </button>
+      {console.log(troubleScanning)}
+      {troubleScanning && (
+        <form onSubmit={formik.handleSubmit}>
+          <label htmlFor="id">
+            Please enter in the numbers below your barcode:
+          </label>
+          <input
+            type="text"
+            name="id"
+            placeholder="Numbers below barcode"
+            onChange={formik.handleChange}
+            value={formik.values.id}
+          />
+          <button type="submit" disabled={!formik.values.id}>
+            Submit
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}

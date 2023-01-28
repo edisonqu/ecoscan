@@ -1,0 +1,48 @@
+#quagga-scanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+  overflow: hidden;
+  #interactive.viewport {
+    width: 250px;
+    height: 100px;
+  }
+  #interactive.viewport canvas,
+  video {
+    width: 250px;
+    height: 100px;
+    margin-top: 10px;
+    object-fit: cover;
+  }
+}
+
+.scanner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-inline: 40px;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+
+  p {
+    margin-top: 50px;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 40px;
+  }
+  form {
+    margin-top: 20px;
+    input {
+      padding: 10px 25px;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 0px;
+    }
+  }
+}

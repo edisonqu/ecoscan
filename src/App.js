@@ -1,14 +1,36 @@
-import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 import Scanner from "./Scanner/scanner";
-import Scanner2 from "./Scanner/scanner2";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Login/Login";
+import Rewards from "./Rewards/Rewards";
+import Results from "./Results/Results";
+import Nav from "./Nav/Nav";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Scanner /> */}
-      <Scanner2 />
-    </div>
+    <Router>
+      <Nav />
+      <div className="App">
+        <Routes>
+          <Route
+            path="/results"
+            element={<Results />}
+            className="component-wrapper"
+          />
+          <Route
+            path="/scanner"
+            element={<Scanner />}
+            className="component-wrapper"
+          />
+          <Route
+            path="/rewards"
+            element={<Rewards />}
+            className="component-wrapper"
+          />
+          <Route path="*" element={<Login />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
