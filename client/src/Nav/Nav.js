@@ -9,7 +9,7 @@ export default function Nav() {
     <div className="nav">
       <h1>Our Name</h1>
       <span>
-        <img src={list} onClick={() => setExpandNav(!expandNav)} />
+        <img src={list} alt="dropdown button icon" onClick={() => setExpandNav(!expandNav)} />
         {expandNav && (
           <div className="expanded">
             <Link to="/scanner" onClick={() => setExpandNav(false)}>

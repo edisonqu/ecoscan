@@ -18,7 +18,7 @@ function parseProductData(product) {
   if (product == null) {
     return;
   }
-  if (product.status == 0) {
+  if (product.status === 0) {
     return;
   }
   var returnData = {};
