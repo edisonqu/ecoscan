@@ -110,8 +110,9 @@ export default function CouponCard({ item, i, reset }) {
           )}
           {token !== null && (
             <a
-
-              href={`https://testnet.hederaexplorer.io/search-details/token/${token.match(/\d+\.\d+\.\d+/)[0]}`}
+              href={`https://testnet.hederaexplorer.io/search-details/token/${
+                token.match(/\d+\.\d+\.\d+/)[0]
+              }`}
             >
               {token}
             </a>
