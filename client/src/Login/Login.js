@@ -4,8 +4,8 @@ import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
-  const username = "jade";
-  const password = "root";
+  const username = "jadewei@gmail.com";
+  const password = "ecoscan@qhacks";
   const [error, setError] = useState(null);
   const formik = useFormik({
     initialValues: {
