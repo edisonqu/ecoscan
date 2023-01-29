@@ -2,6 +2,11 @@ import CouponCard from "./CouponCard";
 
 export default function Rewards() {
   const res = {
+    history: [
+      {
+        name: "banans",
+      },
+    ],
     reward: [
       {
         coupon: "Buy 3 Get 1 Off",

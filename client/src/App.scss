@@ -1,4 +1,15 @@
-@import 'variables';
+@import "./variables";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&display=swap");
+$regular-font: "Montserrat", sans-serif;
+$display-font: "Nunito Sans", sans-serif;
+
+$dark-jungle-green: #000f08;
+$outer-space-crayola: #1c3738;
+$wintergreen-dream: #6f9283;
+$mint-cream: #f4fff8;
+$pewter-blue: #8baaad;
+
 @import url(Nav/Nav.scss);
 @import url(Login/login.scss);
 @import url(Scanner/scanner.scss);
@@ -13,15 +24,29 @@ html {
   overflow: hidden;
 }
 
-body {
-  height: 100%;
+h1,
+h2,
+h3,
+label {
+  font-family: $regular-font;
+  font-weight: bold;
+  color: $dark-jungle-green;
+}
+
+p,
+span {
+  font-family: $display-font;
+}
+
+.error {
+  color: red;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  height: 98%;
+  height: 100%;
 }
 
 button {
@@ -51,16 +76,24 @@ form {
     width: 200px;
     margin-left: -5px;
   }
+}
 
-  button {
-    border-radius: 15px;
-    width: 210px;
-    letter-spacing: 1px;
-    border: none;
-    margin-top: 15px;
-  }
+button {
+  border-radius: 15px;
+  width: 210px;
+  letter-spacing: 1px;
+  border: none;
+  margin-top: 15px;
+  background-color: #000f08;
+  color: #f4fff8;
 }
 
 a {
   text-decoration: none;
+  color: #f4fff8;
+  margin-bottom: 5px;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

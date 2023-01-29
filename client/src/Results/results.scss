@@ -5,9 +5,23 @@
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  padding-top: 20px;
+  margin-inline: 20px;
+  // color: #f4fff8;
   img {
-    height: 200px;
+    height: 150px;
     width: 200px;
     object-fit: cover;
+  }
+  text-align: center;
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  p {
+    width: 200px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    font-weight: bold;
   }
 }

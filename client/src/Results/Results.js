@@ -1,19 +1,32 @@
+import { Link, useNavigate } from "react-router-dom";
 import camera from "../Assets/house.svg";
+import { useContext } from "react";
+import { Context } from "../Context/Context";
 
 export default function Results() {
+  const { product } = useContext(Context);
+  // const [error, setError] = useState(null);
+  // const navigate = useNavigate();
+  console.log(product);
   const res = {
     foodGrade: "A",
     alternatives: ["sdfsd", "dsofid"],
   };
   return (
     <div className="results">
-      <img src={camera} alt="device camera playback" />
       <h1>Results</h1>
-      <h3>Food grade: {res.foodGrade}</h3>
-      <h3>Alternatives:</h3>
+      <img src={product.image} alt="" />
+      <h3>Name:</h3>
+      <p>{product.name}</p>
+      <h3>
+        Food grade: <span className="capitalize">{product.ecoscore}</span>
+      </h3>
+      <h3>Disposal Method:</h3>
+      <h3>Eco-friendly Alternatives:</h3>
       {res.alternatives.map((item, i) => (
         <li key={i}>{item}</li>
       ))}
+      <Link to="/scanner">Back to Scanner</Link>
     </div>
   );
 }

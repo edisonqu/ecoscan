@@ -1,21 +1,37 @@
 import QuaggaScanner from "./Quagga";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
+import { Context } from "../Context/Context";
+import * as Yup from "yup";
 
 export default function Scanner() {
   const [troubleScanning, setTroubleScanning] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+  const { setProduct } = useContext(Context);
+  const BarcodeSchema = Yup.object().shape({
+    id: Yup.number().required("Barcode is required"),
+  });
   const formik = useFormik({
     initialValues: {
       id: "",
     },
-
-    onSubmit: async (values) => {
-      console.log(values);
+    validationSchema: BarcodeSchema,
+    onSubmit: (values) => {
       formik.resetForm();
-      navigate("/results");
+
+      fetch("http://localhost:5050/product/" + values.id)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          if (json.status_verbose !== "product not found") {
+            setProduct(json);
+            navigate("/results");
+          } else {
+            setError("Product not found! Please try another");
+          }
+        });
     },
   });
 
@@ -30,7 +46,6 @@ export default function Scanner() {
       <button onClick={() => setTroubleScanning(!troubleScanning)}>
         Having issues scanning?
       </button>
-      {console.log(troubleScanning)}
       {troubleScanning && (
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="id">
@@ -41,9 +56,15 @@ export default function Scanner() {
             name="id"
             placeholder="Numbers below barcode"
             onChange={formik.handleChange}
+            min="1"
             value={formik.values.id}
           />
-          <button type="submit" disabled={!formik.values.id}>
+          {formik.errors.id && <span className="error">Must be numbers</span>}
+
+          <button
+            type="submit"
+            disabled={!formik.values.id || formik.errors.id}
+          >
             Submit
           </button>
         </form>
