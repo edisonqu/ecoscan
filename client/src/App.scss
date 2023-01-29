@@ -49,14 +49,6 @@ body {
   height: 100%;
 }
 
-button {
-  padding: 12px 30px;
-  border-radius: 15px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  border: none;
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -80,10 +72,12 @@ form {
 
 button {
   border-radius: 15px;
-  width: 210px;
+  width: auto;
   letter-spacing: 1px;
   border: none;
-  margin-top: 15px;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-family: $display-font;
   background-color: #000f08;
   color: #f4fff8;
 }

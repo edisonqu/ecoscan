@@ -1,19 +1,43 @@
 import { useState } from "react";
 
-export default function CouponCard({ item, i }) {
-  const [showBarcode, setShowBarcode] = useState(false);
+export default function CouponCard({ item, i, eligible }) {
+  const [showNFT, setShowNFT] = useState(false);
+  const [unwrapped, setUnwrapped] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+
   return (
     <>
       <div
         key={i}
-        className="coupon"
-        onClick={() => setShowBarcode(!showBarcode)}
+        className={`coupon ${unwrapped && "unwrapped"}`}
+        onClick={() => {
+          setShowNFT(!showNFT);
+          setUnwrapped(false);
+          eligible = null;
+        }}
       >
-        <h3>{item.coupon}</h3>
+        <h3>{unwrapped ? "Tap to claim coupon" : item.coupon}</h3>
       </div>
-      {showBarcode && (
-        <div className="barcode" key={i}>
-          {item.barcode}
+      {showNFT && (
+        <div className="nft" key={i}>
+          {showButton && (
+            <button
+              onClick={() => {
+                setShowButton(false);
+                setShowLoading(true);
+                setTimeout(() => {
+                  setShowLoading(false);
+                  setShowImage(true);
+                }, 3000);
+              }}
+            >
+              Mint Coupon
+            </button>
+          )}
+          {showLoading && <div class="load"></div>}
+          {showImage && <h3>{item.barcode}</h3>}
         </div>
       )}
     </>

@@ -2,45 +2,131 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding-top: 100px;
+  width: 100vw;
+  background-color: #f4fff8;
   .coupon {
-    border: 1px solid black;
     width: 250px;
     margin-top: 20px;
     text-align: center;
+    background-color: #1c3738;
+    h3 {
+      color: white;
+    }
   }
-  .barcode {
+  .nft {
     border: 1px solid black;
-    width: 250px;
-    height: 80px;
-  }
-  .progress {
-    height: 200px;
-    width: 200px;
-    border: 1px solid;
+    width: 248px;
+    padding-block: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    &_state {
-      border: 1px solid;
-      height: 15px;
-      width: 50px;
+    justify-content: center;
+  }
+  .unwrapped {
+    animation: shake 2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  .progress-bar {
+    margin-left: -35px;
+    margin-block: 15px;
+    .progress_state {
+      border: 2px solid #6f9283;
+      box-sizing: border-box;
+      height: 40px;
+      width: 80px;
       transform: skewX(-45deg);
       transform-origin: bottom;
       position: relative;
       display: inline-block;
       margin-inline: 3px;
       &:nth-child(1) {
-        border-bottom-left-radius: 25px;
-        border-top-left-radius: 7px;
+        border-bottom-left-radius: 60px;
+        border-top-left-radius: 15px;
       }
       &:nth-child(3) {
-        border-top-right-radius: 25px;
-        border-bottom-right-radius: 7px;
+        border-top-right-radius: 60px;
+        border-bottom-right-radius: 15px;
       }
-
-      //   display: inline;
+      span {
+        display: block;
+        transform: skewX(35deg);
+        transform-origin: bottom;
+        left: 38px;
+        position: absolute;
+        top: 2px;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: "Nunito Sans", sans-serif;
+      }
+      &.fill {
+        background-color: #6f9283;
+        color: white;
+      }
     }
   }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  1% {
+    transform: translateX(5px);
+  }
+  5% {
+    transform: translateX(-5px);
+  }
+  10% {
+    transform: translateX(5px);
+  }
+  15% {
+    transform: translateX(0);
+  }
+  // 100% {
+  //   transform: translateX(0);
+  // }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.load {
+  width: 20px;
+  height: 20px;
+  // margin: 50px auto 0;
+  border: solid 10px #000f08;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  -webkit-transition: all 0.5s ease-in;
+  -webkit-animation-name: rotate;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  transition: all 0.5s ease-in;
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
