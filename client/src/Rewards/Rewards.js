@@ -53,7 +53,7 @@ export default function Rewards() {
           {progress3 && <span>{eligible[2].grade.toUpperCase()}</span>}
         </div>
       </div>
-      {unwrapped && eligible.length >= 3 &&
+      {eligible.length >= 3 &&
         reward.map((item, i) => {
           return <CouponCard item={item} key={i} reset={reset} />;
         })}
