@@ -10,9 +10,9 @@ import React, { useEffect, useState } from "react";
 import { Context } from "./Context/Context";
 
 function App() {
-  const [user, setUser] = useState(null);
   const [product, setProduct] = useState(null);
   const [pastScans, setPastScans] = useState([]);
+  const [unwrapped, setUnwrapped] = useState(true);
 
   useEffect(() => {
     fetch("https://om-ecoscan-default-rtdb.firebaseio.com/foods.json")
@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   return (
-    <Context.Provider value={{ user, setUser, product, setProduct, pastScans, setPastScans }}>
+    <Context.Provider value={{ product, setProduct, pastScans, setPastScans, unwrapped, setUnwrapped }}>
       <Router>
         <Nav />
         <div className="App">
