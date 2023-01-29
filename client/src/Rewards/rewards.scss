@@ -7,11 +7,11 @@
   width: 100vw;
   background-color: #f4fff8;
   .hedra {
-    width: 230px;
+    width: 200px;
   }
   .coupon {
     width: 250px;
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
     background-color: #1c3738;
     h3 {
@@ -21,10 +21,12 @@
   .nft {
     border: 1px solid black;
     width: 248px;
-    padding-block: 10px;
+    padding-top: 10px;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
+    font-size: 12px;
   }
   .unwrapped {
     animation: shake 2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
@@ -35,8 +37,7 @@
     animation-timing-function: linear;
   }
   .progress-bar {
-    margin-left: -35px;
-    margin-block: 15px;
+    margin: 0 0 15px -35px;
     .progress_state {
       border: 2px solid #6f9283;
       box-sizing: border-box;

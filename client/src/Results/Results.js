@@ -27,7 +27,9 @@ export default function Results() {
           ))}
         </>
       )}
-      <Link to="/rewards">View your reward progress</Link>
+      <Link to="/rewards" className="green-link">
+        View your reward progress
+      </Link>
     </div>
   );
 }

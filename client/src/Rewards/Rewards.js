@@ -2,6 +2,7 @@ import { useState } from "react";
 import CouponCard from "./CouponCard";
 
 export default function Rewards() {
+  let reset = false;
   const res = {
     history: [
       {
@@ -64,20 +65,20 @@ export default function Rewards() {
     <div className="rewards">
       <h1>View your Rewards</h1>
       <div className="progress-bar">
-        <div className={`progress_state ${progress1 && "fill"}`}>
+        <div className={`progress_state ${progress1 && !reset && "fill"}`}>
           {progress1 && <span>{eligible[0].ecoscore}</span>}
         </div>
-        <div className={`progress_state ${progress2 && "fill"}`}>
+        <div className={`progress_state ${progress2 && !reset && "fill"}`}>
           {progress2 && <span>{eligible[1].ecoscore}</span>}
         </div>
-        <div className={`progress_state ${progress3 && "fill"}`}>
+        <div className={`progress_state ${progress3 && !reset && "fill"}`}>
           {progress3 && <span>{eligible[2].ecoscore}</span>}
         </div>
       </div>
       {eligible.length % 3 === 0 &&
         eligible.length >= 3 &&
         res.reward.map((item, i) => {
-          return <CouponCard item={item} key={i} eligible={eligible} />;
+          return <CouponCard item={item} key={i} reset={reset} />;
         })}
     </div>
   );
