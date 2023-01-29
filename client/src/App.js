@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { Context } from "./Context/Context";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(null);
   const [product, setProduct] = useState(null);
   const [pastScans, setPastScans] = useState([]);
 
@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   return (
-    <Context.Provider value={{ user, setUser, product, setProduct, pastScans, setPastScans }}>
+    <Context.Provider value={{ loggedIn, setLoggedIn, product, setProduct, pastScans, setPastScans }}>
       <Router>
         <Nav />
         <div className="App">

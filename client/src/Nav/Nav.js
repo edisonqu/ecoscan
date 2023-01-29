@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import list from "../Assets/list.svg";
-import { useState } from "react";
+import {useContext, useState} from "react";
 import logo from "../Assets/logo.png";
 import barcode from "../Assets/barcode.svg";
+import {Context} from "../Context/Context";
 
 export default function Nav() {
   const [expandNav, setExpandNav] = useState(false);
+  const { loggedIn } = useContext(Context);
 
   return (
     <div className="nav">
-      <Link to="/scanner">
+      {loggedIn && <Link to="/scanner">
         <img src={barcode} alt="EcoScan" className="barcode" />
-      </Link>
+      </Link>}
       <img src={logo} alt="EcoScan" className="logo" />
-      <span>
+      {loggedIn && <span>
         <img
           src={list}
           alt="dropdown button icon"
@@ -32,7 +34,7 @@ export default function Nav() {
             </Link>
           </div>
         )}
-      </span>
+      </span>}
     </div>
   );
 }
