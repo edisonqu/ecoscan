@@ -17,11 +17,11 @@ $pewter-blue: #8baaad;
 @import url(Rewards/rewards.scss);
 @import url(History/History.scss);
 
-html {
+body {
   margin: 0;
   padding: 0;
-  max-height: 100vh;
-  overflow: hidden;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 h1,
@@ -41,13 +41,6 @@ span {
 
 .error {
   color: red;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  height: 100%;
 }
 
 form {
