@@ -37,7 +37,12 @@ export default function CouponCard({ item, i, eligible }) {
             </button>
           )}
           {showLoading && <div class="load"></div>}
-          {showImage && <h3>{item.barcode}</h3>}
+          {showImage && (
+            <img
+              src="https://bafkreieutp4youtg42dvdqqgplvg7sycmuolxmm4jecsz7lw65t63j4pfu.ipfs.nftstorage.link/"
+              className="hedra"
+            />
+          )}
         </div>
       )}
     </>

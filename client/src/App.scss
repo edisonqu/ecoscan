@@ -36,6 +36,7 @@ label {
 p,
 span {
   font-family: $display-font;
+  color: $dark-jungle-green;
 }
 
 .error {
@@ -58,10 +59,9 @@ form {
 
   input {
     width: 200px;
-    margin: 5px 0 20px;
     border-radius: 15px;
     padding: 9px 5px;
-    border: 1px solid black;
+    border: 1px solid #1c3738;
   }
 
   label {
@@ -80,6 +80,10 @@ button {
   font-family: $display-font;
   background-color: #000f08;
   color: #f4fff8;
+  transition: all 500ms linear;
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 a {

@@ -8,6 +8,15 @@
   justify-content: center;
   background-color: #1c3738;
 
+  a {
+    img {
+      height: 23px;
+      position: absolute;
+      left: 25px;
+      top: 30px;
+    }
+  }
+
   .logo {
     height: 60px;
   }
