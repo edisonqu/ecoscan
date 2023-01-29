@@ -33,29 +33,50 @@ function App() {
       <Router>
         <Nav />
         <div className="App">
-          <Routes>
-            <Route
-              path="/results"
-              element={<Results />}
-              className="component-wrapper"
-            />
-            <Route
-              path="/scanner"
-              element={<Scanner />}
-              className="component-wrapper"
-            />
-            <Route
-              path="/rewards"
-              element={<Rewards />}
-              className="component-wrapper"
-            />
-            <Route
-              path="/history"
-              element={<History />}
-              className="component-wrapper"
-            />
-            <Route path="*" element={<Login />} />
-          </Routes>
+          {product ? (
+            <Routes>
+              <Route
+                path="/results"
+                element={<Results />}
+                className="component-wrapper"
+              />
+              <Route
+                path="/scanner"
+                element={<Scanner />}
+                className="component-wrapper"
+              />
+              <Route
+                path="/rewards"
+                element={<Rewards />}
+                className="component-wrapper"
+              />
+              <Route
+                path="/history"
+                element={<History />}
+                className="component-wrapper"
+              />
+              <Route path="*" element={<Login />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route
+                path="/scanner"
+                element={<Scanner />}
+                className="component-wrapper"
+              />
+              <Route
+                path="/rewards"
+                element={<Rewards />}
+                className="component-wrapper"
+              />
+              <Route
+                path="/history"
+                element={<History />}
+                className="component-wrapper"
+              />
+              <Route path="*" element={<Login />} />
+            </Routes>
+          )}
         </div>
       </Router>
     </Context.Provider>
