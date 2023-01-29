@@ -4,6 +4,19 @@ import { Context } from "../Context/Context";
 
 export default function Results() {
   const { product } = useContext(Context);
+
+  const onSave = () => {
+    console.log("productFound is true");
+    fetch("https://om-ecoscan-default-rtdb.firebaseio.com/foods.json", {
+      method: "POST",
+      body: JSON.stringify({
+        name: product.name,
+        image: product.image,
+        grade: product.ecoscore,
+      }),
+    }).then((r) => console.log(r));
+  };
+
   return (
     <div className="results">
       <h1>Results</h1>
@@ -27,9 +40,10 @@ export default function Results() {
           ))}
         </>
       )}
-      <Link to="/rewards" className="green-link">
-        View your reward progress
-      </Link>
+      <Link to="/rewards">View your reward progress</Link>
+      <button onClick={onSave} style={{ marginTop: 10 }}>
+        Save
+      </button>
     </div>
   );
 }
