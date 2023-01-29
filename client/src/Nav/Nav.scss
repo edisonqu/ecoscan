@@ -2,11 +2,15 @@
   position: absolute;
   top: 0;
   width: 100vw;
-  height: 70px;
-  border: 1px solid;
+  height: 85px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #1c3738;
+
+  .logo {
+    height: 60px;
+  }
 
   span {
     position: relative;
@@ -22,21 +26,20 @@
       position: absolute;
       display: flex;
       flex-direction: column;
-      padding: 20px;
-      width: 100px;
-      top: 35px;
+      padding: 10px 20px 25px 0px;
+      width: 140px;
+      top: 42px;
       z-index: 2;
       font-size: 20px;
-      right: -111px;
+      right: -121px;
       text-align: right;
       color: black;
-      border: 1px solid;
+      background-color: #6f9283;
       -webkit-box-shadow: -50px 100px 0 100px rgba(black, 0.5);
-      box-shadow: -50px 366px 0 365px rgba(black, 0.5);
-
-      Link {
-        text-decoration: none !important;
-      }
+      box-shadow: -50px 366px 0 366px rgba(black, 0.5);
+    }
+    .underline {
+      border-bottom: 1px solid #f4fff8;
     }
   }
 }

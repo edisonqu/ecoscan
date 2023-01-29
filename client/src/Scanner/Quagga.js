@@ -46,15 +46,14 @@ export default function QuaggaScanner(props) {
       var code = result.codeResult.code;
       setError(null);
       console.log(code);
-      console.log(lastDetection);
       if (code == null || code === lastDetection) {
-        console.log("reached");
         return;
       }
       lastDetection = code;
       fetch("http://localhost:5050/product/" + code)
         .then((response) => response.json())
         .then((json) => {
+          console.log(json);
           if (json.status_verbose !== "product not found") {
             setProduct(json);
             navigate("/results");

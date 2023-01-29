@@ -12,15 +12,15 @@ export default function Results() {
   };
   return (
     <div className="results">
-      <img src={product.image} alt="" />
       <h1>Results</h1>
+      <img src={product.image} alt="" />
+      <h3>Name:</h3>
+      <p>{product.name}</p>
       <h3>
-        Name: <span>{product.name}</span>
+        Food grade: <span className="capitalize">{product.ecoscore}</span>
       </h3>
-      <h3>
-        Food grade: <span>{product.ecoscore}</span>
-      </h3>
-      <h3>Alternatives:</h3>
+      <h3>Disposal Method:</h3>
+      <h3>Eco-friendly Alternatives:</h3>
       {res.alternatives.map((item, i) => (
         <li key={i}>{item}</li>
       ))}

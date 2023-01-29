@@ -7,16 +7,15 @@ import * as Yup from "yup";
 export default function Scanner() {
   const [troubleScanning, setTroubleScanning] = useState(false);
   const navigate = useNavigate();
-  const SignupSchema = Yup.object().shape({
-    id: Yup.number().required("Required"),
+  const BarcodeSchema = Yup.object().shape({
+    id: Yup.number().required("Barcode is required"),
   });
   const formik = useFormik({
     initialValues: {
       id: "",
     },
-    validationSchema: { SignupSchema },
+    validationSchema: BarcodeSchema,
     onSubmit: (values) => {
-      // if()
       console.log(values);
       formik.resetForm();
       console.log(values);
@@ -36,8 +35,6 @@ export default function Scanner() {
         Having issues scanning?
       </button>
       {troubleScanning && (
-        // <Formik>
-        // <Form>
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="id">
             Please enter in the numbers below your barcode:
@@ -50,12 +47,15 @@ export default function Scanner() {
             min="1"
             value={formik.values.id}
           />
-          <button type="submit" disabled={!formik.values.id}>
+          {formik.errors.id && <span className="error">Must be numbers</span>}
+
+          <button
+            type="submit"
+            disabled={!formik.values.id || formik.errors.id}
+          >
             Submit
           </button>
         </form>
-        // </Form>
-        // </Formik>
       )}
     </div>
   );
