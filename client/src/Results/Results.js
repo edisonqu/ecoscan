@@ -12,6 +12,19 @@ export default function Results() {
     foodGrade: "A",
     alternatives: ["sdfsd", "dsofid"],
   };
+
+  const onSave = () => {
+    console.log('productFound is true');
+    fetch("https://om-ecoscan-default-rtdb.firebaseio.com/foods.json", {
+      method: "POST",
+      body: JSON.stringify({
+        name: product.name,
+        image: product.image,
+        grade: product.ecoscore,
+      }),
+    }).then(r => console.log(r));
+  };
+
   return (
     <div className="results">
       <h1>Results</h1>
@@ -26,7 +39,8 @@ export default function Results() {
       {res.alternatives.map((item, i) => (
         <li key={i}>{item}</li>
       ))}
-      <Link to="/scanner">Back to Scanner</Link>
+      <Link to="/scanner" style={{color: "black", marginTop: 20}}>Back to Scanner</Link>
+      <button onClick={onSave} style={{marginTop: 10}}>Save</button>
     </div>
   );
 }

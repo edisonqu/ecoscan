@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function QuaggaScanner(props) {
   const { setProduct } = useContext(Context);
+  const { product } = useContext(Context);
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
