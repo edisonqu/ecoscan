@@ -69,7 +69,8 @@ export default function QuaggaScanner(props) {
       <div id="quagga-scanner">
         <div id="interactive" className="viewport" />
       </div>
-      {error && <span className="error">{error}</span>}
+      {<span className="error">{"adasd"}</span>}
+      {/* {error && <span className="error">{error}</span>} */}
     </>
   );
 }

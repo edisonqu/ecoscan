@@ -1,12 +1,15 @@
 import QuaggaScanner from "./Quagga";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { Form, useNavigate } from "react-router-dom";
+import { Context } from "../Context/Context";
 import * as Yup from "yup";
 
 export default function Scanner() {
   const [troubleScanning, setTroubleScanning] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { setProduct } = useContext(Context);
   const BarcodeSchema = Yup.object().shape({
     id: Yup.number().required("Barcode is required"),
   });
@@ -16,10 +19,19 @@ export default function Scanner() {
     },
     validationSchema: BarcodeSchema,
     onSubmit: (values) => {
-      console.log(values);
       formik.resetForm();
-      console.log(values);
-      navigate("/results");
+
+      fetch("http://localhost:5050/product/" + values.id)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          if (json.status_verbose !== "product not found") {
+            setProduct(json);
+            navigate("/results");
+          } else {
+            setError("Product not found! Please try another");
+          }
+        });
     },
   });
 

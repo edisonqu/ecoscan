@@ -16,6 +16,9 @@
     margin-top: 10px;
     object-fit: cover;
   }
+  .error {
+    margin-top: 10px;
+  }
 }
 
 .scanner {
@@ -30,7 +33,7 @@
   color: #f4fff8;
   padding-top: 30px;
   p {
-    // margin-top: 20px;
+    margin-top: 20px;
     margin: 0;
   }
   button {
