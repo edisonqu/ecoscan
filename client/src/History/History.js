@@ -1,25 +1,14 @@
+import {useContext} from "react";
+import {Context} from "../Context/Context";
+
 export default function History() {
-  const res = {
-    pastItems: [
-      {
-        name: "banana",
-        grade: "A",
-        image:
-          "https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg",
-      },
-      {
-        name: "granola bar",
-        grade: "A",
-        image:
-          "https://www.inspiredtaste.net/wp-content/uploads/2022/08/Peanut-Butter-Granola-Bars-3-1200.jpg",
-      },
-    ],
-  };
+  const { pastScans } = useContext(Context);
+
   return (
     <div className="history">
       <h1>Past Scanned Items</h1>
-      {res.pastItems.length > 0 ? (
-        res.pastItems.map((item, i) => {
+      {pastScans.length > 0 ? (
+        pastScans.map((item) => {
           return (
             <div className="history_card">
               <span>

@@ -9,7 +9,7 @@ export default function Scanner() {
   const [troubleScanning, setTroubleScanning] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { setProduct } = useContext(Context);
+  const { setProduct, setPastScans } = useContext(Context);
   const BarcodeSchema = Yup.object().shape({
     id: Yup.number().required("Barcode is required"),
   });
@@ -31,6 +31,18 @@ export default function Scanner() {
           } else {
             setError("Product not found! Please try another");
           }
+        });
+
+      fetch("https://om-ecoscan-default-rtdb.firebaseio.com/foods.json")
+        .then((r) => r.json())
+        .then((data) => {
+          const dataArr = [];
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              dataArr.push({ ...data[key], id: key });
+            }
+          }
+          setPastScans(dataArr);
         });
     },
   });
