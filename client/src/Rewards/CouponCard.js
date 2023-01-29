@@ -1,4 +1,5 @@
-import { useState } from "react";
+import {useContext, useState} from "react";
+import {Context} from "../Context/Context";
 import {
   Client,
   TokenCreateTransaction,
@@ -65,11 +66,11 @@ async function mint() {
 
 export default function CouponCard({ item, i, reset }) {
   const [showNFT, setShowNFT] = useState(false);
-  const [unwrapped, setUnwrapped] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
   const [showImage, setShowImage] = useState(false);
   const [showButton, setShowButton] = useState(true);
   const [token, setToken] = useState(null);
+  const { unwrapped, setUnwrapped } = useContext(Context);
   let message = "";
 
   return (

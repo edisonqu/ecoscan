@@ -1,44 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { useContext, useState } from "react";
-import { Context } from "../Context/Context";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { user, setUser } = useContext(Context);
-  const username = "jade";
-  const password = "root";
+  const username = "jadewei@gmail.com";
+  const password = "ecoscan@qhacks";
   const [error, setError] = useState(null);
-  const users = [
-    {
-      username: "jad",
-      password: "sdf",
-      history: [
-        {
-          image: "asdad",
-          item: "banana",
-          ecoscore: "A",
-          alternatives: ["asdas", "adsdasd"],
-        },
-        {
-          item: "aadsd",
-          image: "asdad",
-          ecoscore: "A",
-          alternatives: ["asdas", "adsdasd"],
-        },
-      ],
-      rewards: [
-        {
-          name: "Free Cookie",
-          barcode: "oiasdasd",
-        },
-        {
-          name: "Free Drink",
-          barcode: "oiasdasd",
-        },
-      ],
-    },
-  ];
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -48,8 +16,9 @@ export default function Login() {
     onSubmit: async (values) => {
       formik.resetForm();
       if (values.password === password && values.username === username) {
-        // setUser("New Value");
-        navigate("/scanner");
+        setTimeout(() => {
+          navigate("/scanner")
+        }, 400);
       } else {
         setError(true);
       }

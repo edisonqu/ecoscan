@@ -1,14 +1,14 @@
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import CouponCard from "./CouponCard";
 import {Context} from "../Context/Context";
 
 export default function Rewards() {
-  const { pastScans } = useContext(Context);
+  const { pastScans, unwrapped } = useContext(Context);
+
   let reset = false;
-  // const [reset, ]
   const reward = [
     {
-      coupon: "Buy 3 Get 1 Off",
+      coupon: "Walmart - 50% off",
       barcode: "soiofdsfsfds",
     },
   ];
@@ -26,15 +26,16 @@ export default function Rewards() {
     return p.redeemed === false;
   });
 
-  const progress1 =
-    eligible.length > 0 &&
-    (eligible.length % 3 === 1 ||
-      eligible.length % 3 === 2 ||
-      eligible.length % 3 === 0);
-  const progress2 =
-    eligible.length > 1 &&
-    (eligible.length % 3 === 2 || eligible.length % 3 === 0);
-  const progress3 = eligible.length > 2 && eligible.length % 3 === 0;
+  const progress1 = unwrapped ? eligible.length > 0 && (
+    eligible.length % 1 === 0 ||
+    eligible.length % 2 === 0 ||
+    eligible.length % 3 === 0) :
+    eligible.length > 3 && (
+      eligible.length % 1 === 0 ||
+      eligible.length % 2 === 0 ||
+      eligible.length % 3 === 0)
+  const progress2 = progress1 && eligible.length > 1 && (eligible.length % 2 === 1 || eligible.length > 4)
+  const progress3 = progress1 && progress2 && eligible.length > 2 && eligible.length % 3 === 0;
 
   console.log('pastScans', pastScans);
 
@@ -52,8 +53,7 @@ export default function Rewards() {
           {progress3 && <span>{eligible[2].grade.toUpperCase()}</span>}
         </div>
       </div>
-      {eligible.length % 3 === 0 &&
-        eligible.length >= 3 &&
+      {eligible.length >= 3 &&
         reward.map((item, i) => {
           return <CouponCard item={item} key={i} reset={reset} />;
         })}

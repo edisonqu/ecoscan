@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import list from "../Assets/list.svg";
-import { useState } from "react";
+import {useContext, useState} from "react";
 import logo from "../Assets/logo.png";
 import barcode from "../Assets/barcode.svg";
+import {Context} from "../Context/Context";
 
 export default function Nav() {
   const [expandNav, setExpandNav] = useState(false);
