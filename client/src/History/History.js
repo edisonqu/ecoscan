@@ -12,7 +12,7 @@ export default function History() {
           return (
             <div className="history_card">
               <span>
-                <h3>{item.name}</h3>
+                <h3 style={{maxWidth: 140}}>{item.name}</h3>
                 <strong>Eco Score: {item.grade}</strong>
               </span>
               <img src={item.image} alt={item.name} />

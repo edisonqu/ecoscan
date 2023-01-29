@@ -1,67 +1,28 @@
-import { useEffect, useState } from "react";
+import {useContext, useEffect} from "react";
 import CouponCard from "./CouponCard";
+import {Context} from "../Context/Context";
 
 export default function Rewards() {
+  const { pastScans } = useContext(Context);
   let reset = false;
   // const [reset, ]
-  const res = {
-    history: [
-      {
-        name: "bananas",
-        ecoscore: "A",
-        image: "adsds",
-      },
-      {
-        name: "bananas",
-        ecoscore: "A",
-        image: "adsds",
-      },
-      {
-        name: "bananas",
-        ecoscore: "C",
-        image: "adsds",
-      },
-      {
-        name: "bananas",
-        ecoscore: "C",
-        image: "adsds",
-      },
-      {
-        name: "pineapple",
-        ecoscore: "B",
-        image: "adsds",
-      },
-    ],
-    reward: [
-      {
-        coupon: "Buy 3 Get 1 Off",
-        barcode: "soiofdsfsfds",
-      },
-    ],
-  };
+  const reward = [
+    {
+      coupon: "Buy 3 Get 1 Off",
+      barcode: "soiofdsfsfds",
+    },
+  ];
 
-  useEffect(() => {
-    fetch("https://om-ecoscan-default-rtdb.firebaseio.com/foods.json")
-      .then((r) => r.json())
-      .then((data) => {
-        const dataArr = [];
-        for (const key in data) {
-          if (data.hasOwnProperty(key)) {
-            dataArr.push({ ...data[key], id: key });
-          }
-        }
-      });
-  }, []);
-
-  let eligible = res.history.filter((p) => {
-    return p.ecoscore === "A" || p.ecoscore === "B";
+  let eligible = pastScans.filter((p) => {
+    return p.grade === "A" || p.grade === "B" || p.grade === "a" || p.grade === "b";
   });
+  console.log('eligible', eligible);
   for (const element of eligible) {
     if (element.redeemed !== true) {
       element.redeemed = false;
     }
   }
-  eligible = res.history.filter((p) => {
+  eligible = pastScans.filter((p) => {
     return p.redeemed === false;
   });
 
@@ -75,25 +36,28 @@ export default function Rewards() {
     (eligible.length % 3 === 2 || eligible.length % 3 === 0);
   const progress3 = eligible.length > 2 && eligible.length % 3 === 0;
 
+  console.log('pastScans', pastScans);
+
   return (
     <div className="rewards">
       <h1>View your Rewards</h1>
       <div className="progress-bar">
         <div className={`progress_state ${progress1 && !reset && "fill"}`}>
-          {progress1 && <span>{eligible[0].ecoscore}</span>}
+          {progress1 && <span>{eligible[0].grade.toUpperCase()}</span>}
         </div>
         <div className={`progress_state ${progress2 && !reset && "fill"}`}>
-          {progress2 && <span>{eligible[1].ecoscore}</span>}
+          {progress2 && <span>{eligible[1].grade.toUpperCase()}</span>}
         </div>
         <div className={`progress_state ${progress3 && !reset && "fill"}`}>
-          {progress3 && <span>{eligible[2].ecoscore}</span>}
+          {progress3 && <span>{eligible[2].grade.toUpperCase()}</span>}
         </div>
       </div>
       {eligible.length % 3 === 0 &&
         eligible.length >= 3 &&
-        res.reward.map((item, i) => {
+        reward.map((item, i) => {
           return <CouponCard item={item} key={i} reset={reset} />;
         })}
+      {eligible.length < 3 && <h3 style={{marginInline: 35, textAlign: "center"}}>Scan three items with an ecoscore of A or B for a reward!</h3>}
     </div>
   );
 }
