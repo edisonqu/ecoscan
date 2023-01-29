@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { useContext, useState } from "react";
-import { Context } from "../Context/Context";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { setLoggedIn } = useContext(Context);
   const username = "jade";
   const password = "root";
   const [error, setError] = useState(null);
@@ -19,7 +17,6 @@ export default function Login() {
       formik.resetForm();
       if (values.password === password && values.username === username) {
         setTimeout(() => {
-          setLoggedIn(true);
           navigate("/scanner")
         }, 400);
       } else {

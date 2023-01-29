@@ -7,15 +7,14 @@ import {Context} from "../Context/Context";
 
 export default function Nav() {
   const [expandNav, setExpandNav] = useState(false);
-  const { loggedIn } = useContext(Context);
 
   return (
     <div className="nav">
-      {loggedIn && <Link to="/scanner">
+      <Link to="/scanner">
         <img src={barcode} alt="EcoScan" className="barcode" />
-      </Link>}
+      </Link>
       <img src={logo} alt="EcoScan" className="logo" />
-      {loggedIn && <span>
+      <span>
         <img
           src={list}
           alt="dropdown button icon"
@@ -34,7 +33,7 @@ export default function Nav() {
             </Link>
           </div>
         )}
-      </span>}
+      </span>
     </div>
   );
 }
