@@ -1,11 +1,12 @@
 const { Client, TokenCreateTransaction, TokenType,TokenSupplyType, PrivateKey,TokenMintTransaction} = require("@hashgraph/sdk");
-require("dotenv").config();
+// require("dotenv").config();
 
-async function main() {
+async function mint() {
 
-    const myAccountId = process.env.MY_ACCOUNT_ID;
-    const myPrivateKey = process.env.MY_PRIVATE_KEY;
-    const client = Client.forTestnet().setOperator(myAccountId, myPrivateKey);
+    const myAccountId = "0.0.363785"
+    const myPrivateKey = "556eca9271720b8db79c692843b15382b8bb0f3244c60ed57e064ae165161148"
+    const client = Client.forTestnet()
+        .setOperator(myAccountId, myPrivateKey);
     const supplyKey = PrivateKey.generate()
     const adminKey = PrivateKey.generate()
 
@@ -53,6 +54,6 @@ async function main() {
     let mintRx = await mintTxSubmit.getReceipt(client);
 
 //Log the serial number
-    console.log(`- Created NFT ${tokenId} with serial: ${mintRx.serials[0].low} \n`);
+    return(`- Created NFT ${tokenId} with serial: ${mintRx.serials[0].low} \n`);
 }
-main().catch(err => console.error(err));
+// mint().catch(err => console.error(err));
