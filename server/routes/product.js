@@ -22,7 +22,8 @@ router.get('/:number', async function (req, res, next) {
                     name: data.product.product_name,
                     ecoscore: data.product.ecoscore_grade,
                     nutrition: data.product.nutrition_grades,
-                    keywords: data.product._keywords
+                    keywords: data.product._keywords,
+                    packaging: data.product.packaging_text
                 }
                 res.send(datas);
 
