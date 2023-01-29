@@ -4,10 +4,14 @@ export default function History() {
       {
         name: "banana",
         grade: "A",
+        image:
+          "https://images.immediate.co.uk/production/volatile/sites/30/2017/01/Bananas-218094b-scaled.jpg",
       },
       {
         name: "granola bar",
         grade: "A",
+        image:
+          "https://www.inspiredtaste.net/wp-content/uploads/2022/08/Peanut-Butter-Granola-Bars-3-1200.jpg",
       },
     ],
   };
@@ -18,11 +22,11 @@ export default function History() {
         res.pastItems.map((item, i) => {
           return (
             <div className="history_card">
-              <h3>{item.name}</h3>
               <span>
-                <strong>Eco Grade: </strong>
-                {item.grade}
+                <h3>{item.name}</h3>
+                <strong>Eco Score: {item.grade}</strong>
               </span>
+              <img src={item.image} alt={item.name} />
             </div>
           );
         })
