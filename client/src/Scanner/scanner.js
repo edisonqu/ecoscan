@@ -21,7 +21,7 @@ export default function Scanner() {
     onSubmit: (values) => {
       formik.resetForm();
 
-      fetch("http://localhost:5050/product/" + values.id)
+      fetch("https://jo-nbhs.onrender.com/product/" + values.id)
         .then((response) => response.json())
         .then((json) => {
           console.log(json);

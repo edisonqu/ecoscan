@@ -51,7 +51,7 @@ export default function QuaggaScanner(props) {
         return;
       }
       lastDetection = code;
-      fetch("http://localhost:5050/product/" + code)
+      fetch("https://jo-nbhs.onrender.com/product/" + code)
         .then((response) => response.json())
         .then((json) => {
           console.log(json);

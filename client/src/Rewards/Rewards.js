@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import CouponCard from "./CouponCard";
 
 export default function Rewards() {
   let reset = false;
+  // const [reset, ]
   const res = {
     history: [
       {
