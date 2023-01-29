@@ -3,7 +3,11 @@ var express = require('express');
 const {log} = require("debug");
 const axios = require('axios')
 var router = express.Router();
+const cors = require('cors')
 
+router.use(cors({
+    origin: '*'
+}));
 router.get('/:number', async function (req, res, next) {
         try {
             const number = req.params.number;
@@ -18,6 +22,7 @@ router.get('/:number', async function (req, res, next) {
                     name: data.product.product_name,
                     ecoscore: data.product.ecoscore_grade,
                     nutrition: data.product.nutrition_grades,
+                    keywords: data.product._keywords
                 }
                 res.send(datas);
 
