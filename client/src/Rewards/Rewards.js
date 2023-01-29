@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import CouponCard from "./CouponCard";
 
 export default function Rewards() {
@@ -37,6 +37,20 @@ export default function Rewards() {
       },
     ],
   };
+
+  useEffect(() => {
+    fetch("https://om-ecoscan-default-rtdb.firebaseio.com/foods.json")
+      .then((r) => r.json())
+      .then((data) => {
+        const dataArr = [];
+        for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+            dataArr.push({ ...data[key], id: key });
+          }
+        }
+        console.log("dataArr", dataArr);
+      });
+  }, []);
 
   let eligible = res.history.filter((p) => {
     return p.ecoscore === "A" || p.ecoscore === "B";
