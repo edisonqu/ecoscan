@@ -27,9 +27,8 @@
   text-align: center;
   height: 100vh;
   overflow: hidden;
-
   p {
-    margin-top: 50px;
+    margin-top: 20px;
   }
   button {
     margin-top: 20px;
@@ -44,5 +43,9 @@
     button {
       margin-top: 0;
     }
+  }
+  .error {
+    color: red;
+    margin-top: 10px;
   }
 }

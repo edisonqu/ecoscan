@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import config from "./config.json";
+import React, { useEffect } from "react";
 import Quagga from "quagga";
-import { parseProductData } from "./productSearch";
+import { useContext, useState } from "react";
+import { Context } from "../Context/Context";
+import { useNavigate } from "react-router-dom";
 
 export default function QuaggaScanner(props) {
-  const { onDetected } = props;
-
-  const defaultColour = "#282c34";
-  const [flags, setFlags] = useState("No Ingredients Found");
-  const [colour, setColour] = useState("#282c34");
+  const { setProduct } = useContext(Context);
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     Quagga.init(
@@ -36,7 +35,7 @@ export default function QuaggaScanner(props) {
       },
       function (err) {
         if (err) {
-          //   console.log(err);
+          console.log(err);
           return;
         }
         Quagga.start();
@@ -45,75 +44,33 @@ export default function QuaggaScanner(props) {
     var lastDetection;
     Quagga.onDetected(function (result) {
       var code = result.codeResult.code;
+      setError(null);
+      console.log(code);
+      console.log(lastDetection);
       if (code == null || code === lastDetection) {
+        console.log("reached");
         return;
       }
       lastDetection = code;
-      console.log("Barcode detected and processed : [" + code + "]", result);
-      var cacheData = {
-        "064100389014": {
-          status: 1,
-          product: {
-            _keywords: ["rice", "Kelloggs", "square"],
-            ingredients: [
-              { text: "rice" },
-              { text: "sugar" },
-              { text: "cereal" },
-            ],
-            brands: "Kellogg",
-          },
-        },
-        "063348100900": {
-          status: 1,
-          product: {
-            _keywords: [],
-            ingredients: [{ text: "chocolate" }, { text: "palm oil" }],
-            brands: "Dare",
-          },
-        },
-      };
-      //     fetch('https://world.openfoodfacts.org/api/v0/product/' + code)
-      //         .then((response) => response.json())
-      //         .then((json) => {
-      //             let warningIngredients = parseProductData(json);
-      //             if (warningIngredients != null) {
-      //                 document.getElementById('flags').innerText =
-      //                     warningIngredients;
-      //             }
-      //         });
-      let warningIngredients = parseProductData(cacheData[code]);
-      let flagRows = [
-        <>
-          <h3>
-            High Emission Ingredients Found: <br></br>
-          </h3>
-        </>,
-      ];
-      if (warningIngredients != null) {
-        warningIngredients.forEach((x) => {
-          flagRows.push(
-            <>
-              {x}
-              <br></br>
-            </>
-          );
+      fetch("http://localhost:5050/product/" + code)
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.status_verbose !== "product not found") {
+            setProduct(json);
+            navigate("/results");
+          } else {
+            setError("Product not found! Please try another");
+          }
         });
-        flagRows.push(
-          <a href="https://www.visualcapitalist.com/visualising-the-greenhouse-gas-impact-of-each-food/">
-            Learn More
-          </a>
-        );
-        setFlags(flagRows);
-        setColour("#aa3333");
-        setTimeout(() => setColour(defaultColour), 1000);
-      }
     });
   }, []);
 
-  // return <div id="interactive" className="viewport" />;
   return (
-    <div id="quagga-scanner">
-      <div id="interactive" className="viewport" />
-    </div>
+    <>
+      <div id="quagga-scanner">
+        <div id="interactive" className="viewport" />
+      </div>
+      {error && <span className="error">{error}</span>}
+    </>
   );
 }

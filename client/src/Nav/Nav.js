@@ -7,9 +7,13 @@ export default function Nav() {
 
   return (
     <div className="nav">
-      <h1>Our Name</h1>
+      <h1>EcoScan</h1>
       <span>
-        <img src={list} alt="dropdown button icon" onClick={() => setExpandNav(!expandNav)} />
+        <img
+          src={list}
+          alt="dropdown button icon"
+          onClick={() => setExpandNav(!expandNav)}
+        />
         {expandNav && (
           <div className="expanded">
             <Link to="/scanner" onClick={() => setExpandNav(false)}>

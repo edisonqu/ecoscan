@@ -1,20 +1,25 @@
 import QuaggaScanner from "./Quagga";
 import { useState } from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 export default function Scanner() {
   const [troubleScanning, setTroubleScanning] = useState(false);
   const navigate = useNavigate();
-
+  const SignupSchema = Yup.object().shape({
+    id: Yup.number().required("Required"),
+  });
   const formik = useFormik({
     initialValues: {
       id: "",
     },
-
-    onSubmit: async (values) => {
+    validationSchema: { SignupSchema },
+    onSubmit: (values) => {
+      // if()
       console.log(values);
       formik.resetForm();
+      console.log(values);
       navigate("/results");
     },
   });
@@ -30,8 +35,9 @@ export default function Scanner() {
       <button onClick={() => setTroubleScanning(!troubleScanning)}>
         Having issues scanning?
       </button>
-      {console.log(troubleScanning)}
       {troubleScanning && (
+        // <Formik>
+        // <Form>
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="id">
             Please enter in the numbers below your barcode:
@@ -41,12 +47,15 @@ export default function Scanner() {
             name="id"
             placeholder="Numbers below barcode"
             onChange={formik.handleChange}
+            min="1"
             value={formik.values.id}
           />
           <button type="submit" disabled={!formik.values.id}>
             Submit
           </button>
         </form>
+        // </Form>
+        // </Formik>
       )}
     </div>
   );
