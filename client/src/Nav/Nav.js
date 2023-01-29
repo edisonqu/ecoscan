@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import list from "../Assets/list.svg";
 import { useState } from "react";
 import logo from "../Assets/logo.png";
+import barcode from "../Assets/barcode.svg";
 
 export default function Nav() {
   const [expandNav, setExpandNav] = useState(false);
 
   return (
     <div className="nav">
+      <Link to="/scanner">
+        <img src={barcode} alt="EcoScan" className="barcode" />
+      </Link>
       <img src={logo} alt="EcoScan" className="logo" />
       <span>
         <img

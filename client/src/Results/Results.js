@@ -1,17 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
-import camera from "../Assets/house.svg";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../Context/Context";
 
 export default function Results() {
   const { product } = useContext(Context);
-  // const [error, setError] = useState(null);
-  // const navigate = useNavigate();
-  console.log(product);
-  const res = {
-    foodGrade: "A",
-    alternatives: ["sdfsd", "dsofid"],
-  };
 
   const onSave = () => {
     console.log('productFound is true');
@@ -28,18 +20,27 @@ export default function Results() {
   return (
     <div className="results">
       <h1>Results</h1>
-      <img src={product.image} alt="" />
+      {product.image && <img src={product.image} alt="" />}
       <h3>Name:</h3>
       <p>{product.name}</p>
       <h3>
         Food grade: <span className="capitalize">{product.ecoscore}</span>
       </h3>
-      <h3>Disposal Method:</h3>
-      <h3>Eco-friendly Alternatives:</h3>
-      {res.alternatives.map((item, i) => (
-        <li key={i}>{item}</li>
-      ))}
-      <Link to="/scanner" style={{color: "black", marginTop: 20}}>Back to Scanner</Link>
+      {product.packaging && (
+        <>
+          <h3>Disposal Method:</h3>
+          <p>{product.packaging}</p>
+        </>
+      )}
+      {product.alternatives && (
+        <>
+          <h3>Eco-friendly Alternatives:</h3>
+          {product.alternatives.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </>
+      )}
+      <Link to="/rewards">View your reward progress</Link>
       <button onClick={onSave} style={{marginTop: 10}}>Save</button>
     </div>
   );

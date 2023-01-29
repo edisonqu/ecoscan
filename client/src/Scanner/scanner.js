@@ -38,10 +38,10 @@ export default function Scanner() {
   return (
     <div className="scanner">
       <h1>Scan Barcode Here</h1>
-
       <QuaggaScanner />
       <p>
-        You will be able to track how bad your food is for the environment smh
+        Please scan the barcode of your food to find out its environmental
+        impact.
       </p>
       <button onClick={() => setTroubleScanning(!troubleScanning)}>
         Having issues scanning?
@@ -55,11 +55,17 @@ export default function Scanner() {
             type="text"
             name="id"
             placeholder="Numbers below barcode"
-            onChange={formik.handleChange}
+            onChange={(e) => {
+              formik.handleChange(e);
+              setError(null);
+            }}
             min="1"
             value={formik.values.id}
           />
-          {formik.errors.id && <span className="error">Must be numbers</span>}
+          {formik.errors.id && (
+            <span className="error">Input must be numbers</span>
+          )}
+          {error && <span className="error">{error}</span>}
 
           <button
             type="submit"

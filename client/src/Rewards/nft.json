@@ -1,0 +1,11 @@
+{
+  "name": "coupon_walmart",
+  "description": "redeem your coupon for walmart!",
+  "image": "QmUEfSvdd2vUDGUpW8wQv5SVMYzhM4yKywgTK1YRSHsZVi",
+  "properties": {
+    "company": "walmart",
+    "coupon": "true",
+    "expiry": "2022-03-29"
+
+  }
+}
