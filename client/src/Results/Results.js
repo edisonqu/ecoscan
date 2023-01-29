@@ -24,7 +24,7 @@ export default function Results() {
       <h3>Name:</h3>
       <p>{product.name}</p>
       <h3>
-        Food grade: <span className="capitalize">{product.ecoscore}</span>
+        Eco Score: <span className="capitalize">{product.ecoscore}</span>
       </h3>
       {product.packaging && (
         <>
@@ -40,10 +40,16 @@ export default function Results() {
           ))}
         </>
       )}
-      <Link to="/rewards">View your reward progress</Link>
-      <button onClick={onSave} style={{ marginTop: 10 }}>
-        Save
-      </button>
+      <div className="buttons">
+        <button onClick={onSave} style={{ marginTop: 10 }}>
+          Save Result
+        </button>
+        <button>
+          <Link to="/rewards" className="white-link">
+            View Reward Progress
+          </Link>
+        </button>
+      </div>
     </div>
   );
 }

@@ -5,27 +5,31 @@
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  padding-top: 20px;
   margin-inline: 20px;
-  color: #f4fff8;
-  .green-link {
-    color: #000f08;
-    text-decoration: underline;
-    font-size: 18px;
+  background-color: #f4fff8;
+  .white-link {
+    color: #f4fff8;
+  }
+  button {
+    margin-top: 7px;
+  }
+  .buttons {
+    margin-top: 10px;
   }
   img {
     height: 150px;
     width: 200px;
     object-fit: cover;
+    border-radius: 15px;
   }
   text-align: center;
   h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
   p {
     font-size: 20px;
     width: 300px;
-    margin-block: -10px;
+    margin-block: 2px;
   }
 }

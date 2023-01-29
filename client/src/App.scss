@@ -79,7 +79,7 @@ button {
   font-size: 16px;
   font-family: $display-font;
   background-color: #000f08;
-  color: #f4fff8;
+  color: #f4fff8 !important;
   transition: all 500ms linear;
   &:disabled {
     opacity: 0.4;
