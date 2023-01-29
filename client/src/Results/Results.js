@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../Context/Context";
 
 export default function Results() {
   const { product } = useContext(Context);
+  const [saved, setSaved] = useState(false);
 
   const onSave = () => {
     console.log("productFound is true");
@@ -14,7 +15,10 @@ export default function Results() {
         image: product.image,
         grade: product.ecoscore,
       }),
-    }).then((r) => console.log(r));
+    }).then((r) => {
+      console.log(r);
+      setSaved(true);
+    });
   };
 
   return (
@@ -41,8 +45,8 @@ export default function Results() {
         </>
       )}
       <div className="buttons">
-        <button onClick={onSave} style={{ marginTop: 10 }}>
-          Save Result
+        <button onClick={onSave} style={{ marginTop: 10 }} disabled={saved}>
+          {saved ? "Saved!" : "Save Result"}
         </button>
         <button>
           <Link to="/rewards" className="white-link">

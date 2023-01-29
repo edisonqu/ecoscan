@@ -1,9 +1,11 @@
 .history {
-  height: 100vh;
+  height: 100%;
   display: flex;
   padding-top: 90px;
+  padding-bottom: 20px;
   flex-direction: column;
   align-items: center;
+  background-color: #f4fff8;
   &_card {
     position: relative;
     border: 1px solid black;
