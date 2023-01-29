@@ -60,7 +60,7 @@ async function mint() {
   let mintRx = await mintTxSubmit.getReceipt(client);
 
   //Log the serial number
-  return `- Created NFT ${tokenId} with serial: ${mintRx.serials[0].low} \n`;
+  return `Created NFT ${tokenId} with serial: ${mintRx.serials[0].low}`;
 }
 
 export default function CouponCard({ item, i, reset }) {
@@ -108,9 +108,10 @@ export default function CouponCard({ item, i, reset }) {
               className="hedra"
             />
           )}
-          {token !== "" && (
+          {token !== null && (
             <a
-              href={`https://testnet.hederaexplorer.io/search-details/token/${token}`}
+
+              href={`https://testnet.hederaexplorer.io/search-details/token/${token.match(/\d+\.\d+\.\d+/)[0]}`}
             >
               {token}
             </a>

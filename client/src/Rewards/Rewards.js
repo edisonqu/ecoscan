@@ -49,7 +49,6 @@ export default function Rewards() {
             dataArr.push({ ...data[key], id: key });
           }
         }
-        console.log("dataArr", dataArr);
       });
   }, []);
 

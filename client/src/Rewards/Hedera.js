@@ -54,6 +54,6 @@ async function mint() {
     let mintRx = await mintTxSubmit.getReceipt(client);
 
 //Log the serial number
-    return(`- Created NFT ${tokenId} with serial: ${mintRx.serials[0].low} \n`);
+    return(`Created NFT Coupon ${tokenId} with serial: ${mintRx.serials[0].low} \n`);
 }
 // mint().catch(err => console.error(err));
